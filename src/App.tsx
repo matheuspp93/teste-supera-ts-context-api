@@ -1,7 +1,9 @@
+import Header from "./compoments/Header";
+
 function App() {
   return (
     <>
-      <p>oi</p>
+      <Header />
     </>
   );
 }
