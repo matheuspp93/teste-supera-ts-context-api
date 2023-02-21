@@ -22,10 +22,11 @@ input{
     }
     
 }
-select{
-    background: transparent;
-    border:none;
+ul, ol, li{
+    list-style: none;
+
 }
+
 body{
     
     font-family: 'Inter', sans-serif;

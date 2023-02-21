@@ -1,12 +1,16 @@
 import * as S from "./style.header";
+import { useContext } from "react";
+import { AuthContext } from "../../Contexts/ProductContext";
 
 const Header = ({}) => {
+  const { search } = useContext(AuthContext);
+
   return (
     <S.Header>
       <p>Geek</p>
       <S.Div>
         <S.Input
-          //   onChange={(event) => search(event.target.value)}
+          onChange={(event) => search(event.target.value)}
           type="text"
           placeholder="Digitar Pesquisa"
         />
