@@ -7,15 +7,15 @@ const Header = ({}) => {
 
   return (
     <S.Header>
-      <p>Geek</p>
-      <S.Div>
-        <S.Input
+      <p>Loja Geek</p>
+      <S.SearchBox>
+        <S.SearchInput
           onChange={(event) => searchGame(event.target.value)}
           type="text"
           placeholder="Digitar Pesquisa"
         />
         <S.Button type="submit">Pesquisar</S.Button>
-      </S.Div>
+      </S.SearchBox>
     </S.Header>
   );
 };

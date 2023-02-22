@@ -14,14 +14,7 @@ button{
 img{
     max-width: 100%;
 }
-/* input{
-    background: transparent;
-    border:none;
-    &:focus{
-        outline:none
-    }
-    
-} */
+
 ul, ol, li{
     list-style: none;
 

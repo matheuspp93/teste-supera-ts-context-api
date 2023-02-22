@@ -4,31 +4,31 @@ import * as S from "./style.card";
 import products from "../../database/products.json";
 
 const Card = () => {
-  const { handleClick, filter } = useContext(AuthContext);
+  const { addProduct, filter } = useContext(AuthContext);
 
   return (
     <>
       {products.map((element) => {
         return (
-          <S.ProductLi>
-            <S.ProductDiv>
+          <S.Product>
+            <S.ImageBackGround>
               <S.ProductImg
                 src={require(`assets/img/${element.image}`)}
                 alt={element.name}
               />
-            </S.ProductDiv>
-            <S.Div>
-              <S.ProdutctH2>{element.name}</S.ProdutctH2>
+            </S.ImageBackGround>
+            <S.ProductContent>
+              <S.ProdutctTitle>{element.name}</S.ProdutctTitle>
               <S.ProductPrice>{element.score}</S.ProductPrice>
-              <S.ProductSpanValue>R$:{element.price}</S.ProductSpanValue>
+              <S.ProductValue>R$:{element.price}</S.ProductValue>
               <S.ProductButton
                 key={element.id}
-                onClick={() => handleClick(element.id)}
+                onClick={() => addProduct(element.id)}
               >
                 Adicionar
               </S.ProductButton>
-            </S.Div>
-          </S.ProductLi>
+            </S.ProductContent>
+          </S.Product>
         );
       })}
     </>

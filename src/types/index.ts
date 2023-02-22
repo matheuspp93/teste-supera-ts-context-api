@@ -1,17 +1,17 @@
 import { ReactNode } from "react";
 
-export interface iProductProps {
+export interface iProductContext {
   children: ReactNode;
 }
 
-export interface iResponseProduct {
+export interface iProduct {
   id: number;
   name: string;
   price: number;
   score: number;
   image: string;
 }
-export interface iResponseCart {
+export interface iCartProduct {
   id: number;
   name: string;
   price: number;
@@ -20,11 +20,10 @@ export interface iResponseCart {
   amount: number;
 }
 export interface iProductProvider {
-  currentSale: iResponseCart[];
-  filter: iResponseProduct[];
-  quantity: (productId: number, input: number) => void;
-  handleClick: (productId: number) => void;
+  currentSale: iCartProduct[];
+  filter: iProduct[];
+  addProduct: (productId: number) => void;
   searchGame: (value: string) => void;
-  setCurrentSale: React.Dispatch<React.SetStateAction<iResponseCart[]>>;
-  setFilter: React.Dispatch<React.SetStateAction<iResponseProduct[]>>;
+  setCurrentSale: React.Dispatch<React.SetStateAction<iCartProduct[]>>;
+  setFilter: React.Dispatch<React.SetStateAction<iProduct[]>>;
 }
