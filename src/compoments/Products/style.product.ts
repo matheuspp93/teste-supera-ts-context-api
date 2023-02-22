@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ProductList = styled.ul`
   overflow-x: scroll;
   @media (min-width: 1024px) {
-    overflow-x: none;
+    overflow-x: hidden;
   }
   ul {
     display: flex;

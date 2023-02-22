@@ -27,7 +27,6 @@ export const Product = styled.li`
 
 export const ImageBackGround = styled.div`
   display: flex;
-  background-color: ${({ theme }) => theme.colors.gray.tertiary};
   width: 100%;
   align-items: center;
 `;

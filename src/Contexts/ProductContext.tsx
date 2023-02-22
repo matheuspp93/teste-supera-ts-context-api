@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import {
   iProductContext,
@@ -6,15 +6,20 @@ import {
   iProduct,
   iCartProduct,
 } from "../types";
-import products from "../database/products.json";
+import data from "../database/products.json";
 
 export const AuthContext = createContext<iProductProvider>(
   {} as iProductProvider
 );
 
 const AuthProvider = ({ children }: iProductContext) => {
+  const [products, setProducts] = useState<iProduct[]>([]);
   const [currentSale, setCurrentSale] = useState<iCartProduct[]>([]);
-  const [filter, setFilter] = useState<iProduct[]>([]);
+  // const [filter, setFilter] = useState<iProduct[]>([]);
+
+  useEffect(() => {
+    setProducts(data);
+  }, []);
 
   const addProduct = (productId: number) => {
     const product = currentSale.find((elemento) => elemento.id === productId);
@@ -31,7 +36,6 @@ const AuthProvider = ({ children }: iProductContext) => {
       toast.success("Produto adicionado com sucesso");
     } else {
       const product = products.filter((item) => item.id === productId);
-      console.log(products);
       const currentProduct = { ...product[0], amount: 1 };
       setCurrentSale([...currentSale, currentProduct]);
       toast.dismiss();
@@ -40,10 +44,14 @@ const AuthProvider = ({ children }: iProductContext) => {
   };
 
   const searchGame = (value: string) => {
+    if (!value) {
+      setProducts(data);
+      return;
+    }
     const productFilterd = products.filter((element) =>
       element.name.toLowerCase().includes(value.toLowerCase())
     );
-    setFilter(productFilterd);
+    setProducts(productFilterd);
   };
 
   return (
@@ -52,9 +60,9 @@ const AuthProvider = ({ children }: iProductContext) => {
         addProduct,
         setCurrentSale,
         currentSale,
-        filter,
-        setFilter,
         searchGame,
+        products,
+        setProducts,
       }}
     >
       {children}

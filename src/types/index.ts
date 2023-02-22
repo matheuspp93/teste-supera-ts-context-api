@@ -21,9 +21,11 @@ export interface iCartProduct {
 }
 export interface iProductProvider {
   currentSale: iCartProduct[];
-  filter: iProduct[];
+  // filter: iProduct[];
   addProduct: (productId: number) => void;
   searchGame: (value: string) => void;
   setCurrentSale: React.Dispatch<React.SetStateAction<iCartProduct[]>>;
-  setFilter: React.Dispatch<React.SetStateAction<iProduct[]>>;
+  // setFilter: React.Dispatch<React.SetStateAction<iProduct[]>>;
+  products: iProduct[];
+  setProducts: React.Dispatch<React.SetStateAction<iProduct[]>>;
 }

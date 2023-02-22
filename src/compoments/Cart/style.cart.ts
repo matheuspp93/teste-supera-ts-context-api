@@ -74,9 +74,13 @@ export const CartButton = styled.button`
 export const PurchaseTotal = styled.div`
   background-color: ${({ theme }) => theme.colors.gray.quartiary};
   padding: 20px 20.45px 0 18.45px;
-  height: 128px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
+  padding-bottom: 16px;
+
+  span {
+    margin-bottom: 16px;
+  }
 `;
 export const Total = styled.div`
   display: flex;
