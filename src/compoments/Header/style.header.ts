@@ -15,11 +15,13 @@ export const Header = styled.header`
   @media (min-width: 1600px) {
     padding: 0px 109px 0px 109px;
   }
+  p {
+    font-size: 22px;
+    font-weight: 700;
+  }
 `;
 
-export const Img = styled.img``;
-
-export const Div = styled.div`
+export const SearchBox = styled.div`
   position: relative;
   width: 309px;
 
@@ -31,7 +33,7 @@ export const Div = styled.div`
   }
 `;
 
-export const Input = styled.input`
+export const SearchInput = styled.input`
   background-color: ${({ theme }) => theme.colors.gray.quartiary};
   width: 100%;
   height: 60px;
