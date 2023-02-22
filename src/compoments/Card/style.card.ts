@@ -2,9 +2,12 @@ import styled from "styled-components";
 
 export const ProductLi = styled.li`
   width: 239px;
-  height: 337px;
-  border: 2px solid ${({ theme }) => theme.colors.gray.tertiary};
+  border: 2px solid #e0e0e0;
   border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 0;
   @media (min-width: 1024px) {
     width: 209px;
   }
@@ -44,12 +47,12 @@ export const ProdutctH2 = styled.h2`
   margin-top: 14px;
 `;
 
-export const ProductSpan = styled.span`
+export const ProductPrice = styled.span`
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
   display: block;
-  color: ${({ theme }) => theme.colors.gray.tertiary};
+  color: ${({ theme }) => theme.colors.gray.primary};
   margin-top: 14px;
 `;
 
@@ -58,7 +61,6 @@ export const ProductSpanValue = styled.span`
   font-size: 14px;
   font-weight: 600;
   line-height: 24px;
-
   margin-top: 14px;
   color: ${({ theme }) => theme.colors.green.primary};
 `;

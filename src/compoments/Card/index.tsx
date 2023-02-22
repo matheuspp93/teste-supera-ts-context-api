@@ -1,33 +1,36 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Contexts/ProductContext";
 import * as S from "./style.card";
+import products from "../../database/products.json";
 
 const Card = () => {
-  const { products, handleClick, filter } = useContext(AuthContext);
+  const { handleClick, filter } = useContext(AuthContext);
 
   return (
     <>
-      {products.map((element) => (
-        <S.ProductLi>
-          <S.ProductDiv>
-            <S.ProductImg
-              // src={require(`../src/assets/img/${element.image}`)}
-              alt={element.name}
-            />
-          </S.ProductDiv>
-          <S.Div>
-            <S.ProdutctH2>{element.name}</S.ProdutctH2>
-            <S.ProductSpan>{element.score}</S.ProductSpan>
-            <S.ProductSpanValue>R$:{element.price}</S.ProductSpanValue>
-            <S.ProductButton
-              // id={element.id}
-              onClick={() => handleClick(element.id)}
-            >
-              Adicionar
-            </S.ProductButton>
-          </S.Div>
-        </S.ProductLi>
-      ))}
+      {products.map((element) => {
+        return (
+          <S.ProductLi>
+            <S.ProductDiv>
+              <S.ProductImg
+                src={require(`assets/img/${element.image}`)}
+                alt={element.name}
+              />
+            </S.ProductDiv>
+            <S.Div>
+              <S.ProdutctH2>{element.name}</S.ProdutctH2>
+              <S.ProductPrice>{element.score}</S.ProductPrice>
+              <S.ProductSpanValue>R$:{element.price}</S.ProductSpanValue>
+              <S.ProductButton
+                key={element.id}
+                onClick={() => handleClick(element.id)}
+              >
+                Adicionar
+              </S.ProductButton>
+            </S.Div>
+          </S.ProductLi>
+        );
+      })}
     </>
   );
 };

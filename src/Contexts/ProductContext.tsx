@@ -2,45 +2,54 @@ import { createContext, useState, useEffect } from "react";
 import { allProducts } from "../constants/endpoints";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
-import { iProductProps, iProductProvider, iResponseProduct } from "../types";
+import {
+  iProductProps,
+  iProductProvider,
+  iResponseCart,
+  iResponseProduct,
+} from "../types";
+import products from "../database/products.json";
 
 export const AuthContext = createContext<iProductProvider>(
   {} as iProductProvider
 );
 
 const AuthProvider = ({ children }: iProductProps) => {
-  const [products, setProducts] = useState<iResponseProduct[]>([]);
-  const [currentSale, setCurrentSale] = useState<iResponseProduct[]>([]);
+  const [currentSale, setCurrentSale] = useState<iResponseCart[]>([]);
   const [filter, setFilter] = useState<iResponseProduct[]>([]);
 
-  useEffect(() => {
-    api
-      .get<iResponseProduct[]>(allProducts)
-      .then((response) => {
-        console.log(response.data);
-
-        setProducts(response.data);
-      })
-      .catch((error) => console.error(error));
-  }, []);
-
   const handleClick = (productId: number) => {
-    const verification = currentSale.some(
-      (elemento) => elemento.id === productId
-    );
-    const product = products.filter(
-      (item: iResponseProduct) => item.id === productId
-    );
+    const product = currentSale.find((elemento) => elemento.id === productId);
 
-    if (verification === true) {
-      toast.error("Item já existe no carrinho");
+    if (product) {
+      const newProducts = currentSale.map((elemento) => {
+        if (elemento.id === productId) {
+          elemento.amount += 1;
+        }
+        return elemento;
+      });
+      setCurrentSale(newProducts);
+      toast.success("Produto adicionado com sucesso");
     } else {
-      setCurrentSale([...currentSale, ...product]);
+      const product = products.filter((item) => item.id === productId);
+      console.log(products);
+      const currentProduct = { ...product[0], amount: 1 };
+      setCurrentSale([...currentSale, currentProduct]);
       toast.success("Produto adicionado com sucesso");
     }
   };
 
-  const search = (value: string) => {
+  const quantity = (productId: number, input: number) => {
+    const product = currentSale.map((elemento) => {
+      if (elemento.id === productId) {
+        elemento.amount = input;
+      }
+      return elemento;
+    });
+    setCurrentSale(product);
+  };
+
+  const searchGame = (value: string) => {
     const productFilterd = products.filter((element) =>
       element.name.toLowerCase().includes(value.toLowerCase())
     );
@@ -50,14 +59,13 @@ const AuthProvider = ({ children }: iProductProps) => {
   return (
     <AuthContext.Provider
       value={{
-        products,
-        setProducts,
         handleClick,
+        quantity,
         setCurrentSale,
         currentSale,
         filter,
         setFilter,
-        search,
+        searchGame,
       }}
     >
       {children}
