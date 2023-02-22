@@ -41,7 +41,7 @@ const Cart = () => {
         <div>
           <S.CartList>
             {currentSale.map((product) => (
-              <S.CartItem>
+              <S.CartItem key={product.id}>
                 <S.CardBox>
                   <S.BackGrounImage>
                     <S.ItemmImg

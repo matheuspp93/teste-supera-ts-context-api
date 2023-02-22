@@ -9,7 +9,7 @@ const Card = () => {
     <>
       {products.map((element) => {
         return (
-          <S.Product>
+          <S.Product key={element.id}>
             <S.ImageBackGround>
               <S.ProductImg
                 src={require(`assets/img/${element.image}`)}
