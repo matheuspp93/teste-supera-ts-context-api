@@ -51,7 +51,9 @@ const Cart = () => {
                   </S.BackGrounImage>
                   <div>
                     <S.ProductName>{product.name}</S.ProductName>
-                    <S.ProductPrice>{product.price}</S.ProductPrice>
+                    <S.ProductPrice>
+                      R$ {`${product.price.toFixed(2)}`.replace(",", ",")}
+                    </S.ProductPrice>
                     <S.ProductAmount>
                       <span>Amount: {product.amount}</span>
                       <button onClick={() => addProduct(product.id)}>+</button>

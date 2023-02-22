@@ -1,10 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "../../Contexts/ProductContext";
 import * as S from "./style.card";
-import products from "../../database/products.json";
 
 const Card = () => {
-  const { addProduct, filter } = useContext(AuthContext);
+  const { addProduct, products } = useContext(AuthContext);
 
   return (
     <>
@@ -19,8 +18,10 @@ const Card = () => {
             </S.ImageBackGround>
             <S.ProductContent>
               <S.ProdutctTitle>{element.name}</S.ProdutctTitle>
-              <S.ProductPrice>{element.score}</S.ProductPrice>
-              <S.ProductValue>R$:{element.price}</S.ProductValue>
+              <S.ProductPrice>Score: {element.score}</S.ProductPrice>
+              <S.ProductValue>
+                R$:{`${element.price.toFixed(2)}`.replace(".", ",")}
+              </S.ProductValue>
               <S.ProductButton
                 key={element.id}
                 onClick={() => addProduct(element.id)}
