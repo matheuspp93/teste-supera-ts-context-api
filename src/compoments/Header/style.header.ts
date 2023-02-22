@@ -17,8 +17,6 @@ export const Header = styled.header`
   }
 `;
 
-export const Img = styled.img``;
-
 export const Div = styled.div`
   position: relative;
   width: 309px;

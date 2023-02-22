@@ -3,14 +3,14 @@ import { useContext } from "react";
 import { AuthContext } from "../../Contexts/ProductContext";
 
 const Header = ({}) => {
-  const { search } = useContext(AuthContext);
+  const { searchGame } = useContext(AuthContext);
 
   return (
     <S.Header>
       <p>Geek</p>
       <S.Div>
         <S.Input
-          onChange={(event) => search(event.target.value)}
+          onChange={(event) => searchGame(event.target.value)}
           type="text"
           placeholder="Digitar Pesquisa"
         />

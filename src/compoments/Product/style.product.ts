@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
-export const ProductSection = styled.section`
-  overflow-x: scroll;
-  @media (min-width: 1024px) {
-    overflow-x: hidden;
-  }
-`;
+export const ProductSection = styled.section``;
 export const ProductUl = styled.ul`
   display: flex;
   gap: 20px;

@@ -11,13 +11,20 @@ export interface iResponseProduct {
   score: number;
   image: string;
 }
+export interface iResponseCart {
+  id: number;
+  name: string;
+  price: number;
+  score: number;
+  image: string;
+  amount: number;
+}
 export interface iProductProvider {
-  products: iResponseProduct[];
-  currentSale: iResponseProduct[];
+  currentSale: iResponseCart[];
   filter: iResponseProduct[];
+  quantity: (productId: number, input: number) => void;
   handleClick: (productId: number) => void;
-  search: (value: string) => void;
-  setProducts: React.Dispatch<React.SetStateAction<iResponseProduct[]>>;
-  setCurrentSale: React.Dispatch<React.SetStateAction<iResponseProduct[]>>;
+  searchGame: (value: string) => void;
+  setCurrentSale: React.Dispatch<React.SetStateAction<iResponseCart[]>>;
   setFilter: React.Dispatch<React.SetStateAction<iResponseProduct[]>>;
 }
