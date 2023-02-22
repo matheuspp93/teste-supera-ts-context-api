@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Main = styled.main`
   padding: 14px 16px 14px 16px;
-
+  overflow: hidden;
   @media (min-width: 1024px) {
     display: flex;
     padding: 14px 16px 14px 16px;

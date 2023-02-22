@@ -1,12 +1,10 @@
-import { createContext, useState, useEffect } from "react";
-import { allProducts } from "../constants/endpoints";
-import { api } from "../services/api";
+import { createContext, useState } from "react";
 import { toast } from "react-toastify";
 import {
-  iProductProps,
+  iProductContext,
   iProductProvider,
-  iResponseCart,
-  iResponseProduct,
+  iProduct,
+  iCartProduct,
 } from "../types";
 import products from "../database/products.json";
 
@@ -14,11 +12,11 @@ export const AuthContext = createContext<iProductProvider>(
   {} as iProductProvider
 );
 
-const AuthProvider = ({ children }: iProductProps) => {
-  const [currentSale, setCurrentSale] = useState<iResponseCart[]>([]);
-  const [filter, setFilter] = useState<iResponseProduct[]>([]);
+const AuthProvider = ({ children }: iProductContext) => {
+  const [currentSale, setCurrentSale] = useState<iCartProduct[]>([]);
+  const [filter, setFilter] = useState<iProduct[]>([]);
 
-  const handleClick = (productId: number) => {
+  const addProduct = (productId: number) => {
     const product = currentSale.find((elemento) => elemento.id === productId);
 
     if (product) {
@@ -29,24 +27,16 @@ const AuthProvider = ({ children }: iProductProps) => {
         return elemento;
       });
       setCurrentSale(newProducts);
+      toast.dismiss();
       toast.success("Produto adicionado com sucesso");
     } else {
       const product = products.filter((item) => item.id === productId);
       console.log(products);
       const currentProduct = { ...product[0], amount: 1 };
       setCurrentSale([...currentSale, currentProduct]);
+      toast.dismiss();
       toast.success("Produto adicionado com sucesso");
     }
-  };
-
-  const quantity = (productId: number, input: number) => {
-    const product = currentSale.map((elemento) => {
-      if (elemento.id === productId) {
-        elemento.amount = input;
-      }
-      return elemento;
-    });
-    setCurrentSale(product);
   };
 
   const searchGame = (value: string) => {
@@ -59,8 +49,7 @@ const AuthProvider = ({ children }: iProductProps) => {
   return (
     <AuthContext.Provider
       value={{
-        handleClick,
-        quantity,
+        addProduct,
         setCurrentSale,
         currentSale,
         filter,

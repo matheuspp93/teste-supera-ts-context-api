@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CartSection = styled.section`
+export const Cart = styled.section`
   margin-top: 20px;
   @media (min-width: 1024px) {
     width: 100%;
@@ -11,7 +11,7 @@ export const CartSection = styled.section`
   }
 `;
 
-export const CartH2 = styled.h2`
+export const CartTitle = styled.h2`
   background-color: ${({ theme }) => theme.colors.green.primary};
   color: ${({ theme }) => theme.colors.gray.quartiary};
   width: 100%;
@@ -22,7 +22,7 @@ export const CartH2 = styled.h2`
   padding: 22px 0 13px 20.93px;
 `;
 
-export const CartUl = styled.ul`
+export const CartList = styled.ul`
   display: flex;
   flex-direction: column;
   height: 253px;
@@ -32,11 +32,11 @@ export const CartUl = styled.ul`
   overflow-y: scroll;
 `;
 
-export const CartLi = styled.li`
+export const CartItem = styled.li`
   display: flex;
   justify-content: space-between;
 `;
-export const CartDivImg = styled.div`
+export const BackGrounImage = styled.div`
   width: 70px;
   height: 70px;
   background-color: ${({ theme }) => theme.colors.gray.tertiary};
@@ -45,17 +45,17 @@ export const CartDivImg = styled.div`
   justify-content: center;
   border-radius: 8px;
 `;
-export const Cartimg = styled.img`
+export const ItemmImg = styled.img`
   height: 50px;
   object-fit: cover;
   background-color: ${({ theme }) => theme.colors.gray.tertiary};
 `;
-export const CartP = styled.p`
+export const ProductName = styled.p`
   font-size: 18px;
   font-weight: 700;
   margin-left: 10px;
 `;
-export const CartSapn = styled.span`
+export const ProductPrice = styled.span`
   font-size: 12px;
   font-weight: 400;
   line-height: 16px;
@@ -71,21 +71,21 @@ export const CartButton = styled.button`
   line-height: 14.52px;
 `;
 
-export const CartDviSectionTotal = styled.div`
+export const PurchaseTotal = styled.div`
   background-color: ${({ theme }) => theme.colors.gray.quartiary};
   padding: 20px 20.45px 0 18.45px;
   height: 128px;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
 `;
-export const Cartdiv1 = styled.div`
+export const Total = styled.div`
   display: flex;
   justify-content: space-between;
-`;
-export const CartSpanTotal = styled.span`
-  font-size: 14px;
-  font-weight: 600;
-  margin-left: 4px;
+  span {
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 4px;
+  }
 `;
 export const CartSpanPrice = styled.span`
   font-size: 14px;
@@ -102,7 +102,7 @@ export const CartButtonRemoveAll = styled.button`
   margin-top: 10px;
 `;
 
-export const DivVazia = styled.div`
+export const EmptyCart = styled.div`
   background-color: ${({ theme }) => theme.colors.gray.quartiary};
   display: flex;
   text-align: center;
@@ -110,18 +110,38 @@ export const DivVazia = styled.div`
   flex-direction: column;
   border-bottom-right-radius: 8px;
   border-bottom-left-radius: 8px;
-`;
-export const P = styled.p`
-  font-size: 18px;
-  font-weight: 700;
-  margin-top: 56px;
-`;
-export const SpanAdd = styled.span`
-  font-size: 14px;
-  font-weight: 400;
-  margin-top: 13px;
+  p {
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 56px;
+  }
+  span {
+    font-size: 14px;
+    font-weight: 400;
+    margin-top: 13px;
+  }
 `;
 
 export const CardBox = styled.div`
+  width: 100%;
   display: flex;
+`;
+
+export const ProductAmount = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  span {
+    font-size: 12px;
+    font-weight: 600;
+    color: ${({ theme }) => theme.colors.gray.secondary};
+    margin-left: 10px;
+  }
+  button {
+    background-color: transparent;
+    border: none;
+    font-weight: 700;
+    font-size: 18px;
+  }
 `;

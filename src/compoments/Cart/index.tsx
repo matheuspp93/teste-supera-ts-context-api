@@ -1,9 +1,10 @@
 import * as S from "./style.cart";
 import { useContext } from "react";
 import { AuthContext } from "../../Contexts/ProductContext";
+import { toast } from "react-toastify";
 
 const Cart = () => {
-  const { currentSale, setCurrentSale } = useContext(AuthContext);
+  const { currentSale, setCurrentSale, addProduct } = useContext(AuthContext);
 
   const calculateSubTotal = currentSale.reduce((act, aca) => {
     return act + aca.price * aca.amount;
@@ -25,6 +26,8 @@ const Cart = () => {
         return game;
       });
       setCurrentSale(newList);
+      toast.dismiss();
+      toast.success("Item removido do carrinho!!");
     }
   };
 
@@ -32,57 +35,63 @@ const Cart = () => {
     setCurrentSale([]);
   };
   return (
-    <S.CartSection>
-      <S.CartH2>Carrinho de Compra</S.CartH2>
+    <S.Cart>
+      <S.CartTitle>Carrinho de Compra</S.CartTitle>
       {currentSale.length > 0 ? (
         <div>
-          <S.CartUl>
-            {currentSale.map((elemento) => (
-              <S.CartLi>
+          <S.CartList>
+            {currentSale.map((product) => (
+              <S.CartItem>
                 <S.CardBox>
-                  <S.CartDivImg>
-                    <S.Cartimg
-                      src={require(`assets/img/${elemento.image}`)}
+                  <S.BackGrounImage>
+                    <S.ItemmImg
+                      src={require(`assets/img/${product.image}`)}
                       alt=""
                     />
-                  </S.CartDivImg>
+                  </S.BackGrounImage>
                   <div>
-                    <S.CartP>{elemento.name}</S.CartP>
-                    <S.CartSapn>{elemento.price}</S.CartSapn>
-                    <S.CartSapn>Amount: {elemento.amount}</S.CartSapn>
+                    <S.ProductName>{product.name}</S.ProductName>
+                    <S.ProductPrice>{product.price}</S.ProductPrice>
+                    <S.ProductAmount>
+                      <span>Amount: {product.amount}</span>
+                      <button onClick={() => addProduct(product.id)}>+</button>
+                      <button onClick={() => removeProduct(product.id)}>
+                        -
+                      </button>
+                    </S.ProductAmount>
                   </div>
                 </S.CardBox>
                 <div>
-                  <S.CartButton onClick={() => removeProduct(elemento.id)}>
+                  <S.CartButton onClick={() => removeProduct(product.id)}>
                     Remover
                   </S.CartButton>
                 </div>
-              </S.CartLi>
+              </S.CartItem>
             ))}
-          </S.CartUl>
-          <S.CartDviSectionTotal>
-            <S.Cartdiv1>
-              <S.CartSpanTotal>Total</S.CartSpanTotal>
+          </S.CartList>
+          <S.PurchaseTotal>
+            <S.Total>
+              <span>Total</span>
               <S.CartSpanPrice>{calculateTotal}</S.CartSpanPrice>
-            </S.Cartdiv1>
-            <S.Cartdiv1>
-              <S.CartSpanTotal>Subtotal</S.CartSpanTotal>
+            </S.Total>
+            <S.Total>
+              <span>Subtotal</span>
               <S.CartSpanPrice>
                 R${calculateSubTotal.toFixed(2).replace(".", ",")}
               </S.CartSpanPrice>
-            </S.Cartdiv1>
+            </S.Total>
             <S.CartButtonRemoveAll onClick={() => removeAll()}>
               Remover todos
             </S.CartButtonRemoveAll>
-          </S.CartDviSectionTotal>
+          </S.PurchaseTotal>
         </div>
       ) : (
-        <S.DivVazia>
-          <S.P> Sua Sacola está vazia</S.P>
-          <S.SpanAdd>Adicione itens</S.SpanAdd>
-        </S.DivVazia>
+        <S.EmptyCart>
+          <p> Sua Sacola está vazia</p>
+          <span>Adicione itens</span>
+        </S.EmptyCart>
       )}
-    </S.CartSection>
+    </S.Cart>
   );
 };
 

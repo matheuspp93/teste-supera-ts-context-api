@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ProductLi = styled.li`
+export const Product = styled.li`
   width: 239px;
   border: 2px solid #e0e0e0;
   border-radius: 5px;
@@ -25,7 +25,7 @@ export const ProductLi = styled.li`
   }
 `;
 
-export const ProductDiv = styled.div`
+export const ImageBackGround = styled.div`
   display: flex;
   background-color: ${({ theme }) => theme.colors.gray.tertiary};
   width: 100%;
@@ -37,10 +37,10 @@ export const ProductImg = styled.img`
   width: 160px;
 `;
 
-export const Div = styled.div`
+export const ProductContent = styled.div`
   padding: 0px 0px 0px 21px;
 `;
-export const ProdutctH2 = styled.h2`
+export const ProdutctTitle = styled.h2`
   font-weight: 700;
   font-size: 18px;
   line-height: 24px;
@@ -56,7 +56,7 @@ export const ProductPrice = styled.span`
   margin-top: 14px;
 `;
 
-export const ProductSpanValue = styled.span`
+export const ProductValue = styled.span`
   display: block;
   font-size: 14px;
   font-weight: 600;
